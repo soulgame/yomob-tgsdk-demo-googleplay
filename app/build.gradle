@@ -1,0 +1,90 @@
+apply plugin: 'com.android.application'
+
+android {
+    compileSdkVersion 26
+    buildToolsVersion "25.0.0"
+
+    defaultConfig {
+        applicationId "com.soulgame.tgsdksampleapp.android"
+        minSdkVersion 16
+        targetSdkVersion 26
+        versionCode 1539677670
+        versionName "1.8.2"
+        multiDexEnabled true
+        ndk {
+            abiFilters "armeabi-v7a"
+        }
+    }
+    signingConfigs {
+        releaseConfig {
+            keyAlias 'tgsdk_sample_app'
+            keyPassword 'tgsdk.soulgame.com'
+            storeFile file('./../tgsdk_sample_app.keystore')
+            storePassword 'tgsdk.soulgame.com'
+        }
+    }
+    buildTypes {
+        debug {
+            minifyEnabled true
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-project.txt'
+            signingConfig signingConfigs.releaseConfig
+            manifestPlaceholders = [
+                    TGSDK_APPID_VALUE: "59t5rJH783hEQ3Jd7Zqr",
+                    TGSDK_CHANNELID_VALUE: 10035,
+            ]
+        }
+        release {
+            minifyEnabled true
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-project.txt'
+            signingConfig signingConfigs.releaseConfig
+            manifestPlaceholders = [
+                    TGSDK_APPID_VALUE: "59t5rJH783hEQ3Jd7Zqr",
+                    TGSDK_CHANNELID_VALUE: 10035,
+            ]
+        }
+    }
+    lintOptions {
+        abortOnError false
+    }
+    dexOptions {
+        javaMaxHeapSize "4g"
+    }
+}
+
+repositories {
+    flatDir {
+        dirs 'libs'
+    }
+}
+
+dependencies {
+    compile fileTree(dir: 'libs', include: ['*.jar'])
+    compile 'com.android.support:multidex:1.0.3'
+    compile 'com.android.support:appcompat-v7:25.3.1'
+    compile 'com.android.support:support-v4:26.0.1'
+    compile 'com.android.support:recyclerview-v7:25.3.1'
+    
+    compile 'com.google.android.gms:play-services-ads:15.0.1'
+    compile 'com.google.android.gms:play-services-ads-base:15.0.1'
+    compile 'com.google.android.gms:play-services-ads-identifier:15.0.1'
+    compile 'com.google.android.gms:play-services-location:15.0.1'
+    compile 'com.google.android.gms:play-services-basement:15.0.1'
+    compile 'com.google.android.gms:play-services-gass:15.0.1'
+
+    
+    compile(name: 'TGSDK.1.8.2', ext: 'aar')
+    compile(name: 'TGSDKADYouappi.1.8.2', ext: 'aar')
+    compile(name: 'TGSDKADIronsource.1.8.2', ext: 'aar')
+    compile(name: 'TGSDKADChartboost.1.8.2', ext: 'aar')
+    compile(name: 'TGSDKADTapjoy.1.8.2', ext: 'aar')
+    compile(name: 'TGSDKADUnityads.1.8.2', ext: 'aar')
+    compile(name: 'TGSDKADMobvista.1.8.2', ext: 'aar')
+    compile(name: 'TGSDKADFacebook.1.8.2', ext: 'aar')
+    compile(name: 'TGSDKADApplovin.1.8.2', ext: 'aar')
+    compile(name: 'TGSDKADVungle.1.8.2', ext: 'aar')
+    compile(name: 'TGSDKADBatmobi.1.8.2', ext: 'aar')
+    compile(name: 'TGSDKADAdmob.1.8.2', ext: 'aar')
+    compile(name: 'TGSDKADInmobi.1.8.2', ext: 'aar')
+    compile(name: 'TGSDKADAdcolony.1.8.2', ext: 'aar')
+
+}

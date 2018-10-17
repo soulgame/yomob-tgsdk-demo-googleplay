@@ -1,0 +1,191 @@
+-ignorewarnings
+
+-keepattributes Signature
+-keep class okhttp3.** { *; }
+-keep class okio.** { *; }
+
+# TGSDK
+-keep class com.soulgame.sgsdk.** { *; }
+
+
+# GooglePlayService
+-keep public class com.google.android.gms.common.internal.safeparcel.SafeParcelable {
+    public static final *** NULL;
+}
+
+-keepnames class * implements android.os.Parcelable
+-keepclassmembers class * implements android.os.Parcelable {
+  public static final *** CREATOR;
+}
+
+-keep @interface android.support.annotation.Keep
+-keep @android.support.annotation.Keep class *
+-keepclasseswithmembers class * {
+  @android.support.annotation.Keep <fields>;
+}
+-keepclasseswithmembers class * {
+  @android.support.annotation.Keep <methods>;
+}
+
+-keep @interface com.google.android.gms.common.annotation.KeepName
+-keepnames @com.google.android.gms.common.annotation.KeepName class *
+-keepclassmembernames class * {
+  @com.google.android.gms.common.annotation.KeepName *;
+}
+
+-keep @interface com.google.android.gms.common.util.DynamiteApi
+-keep public @com.google.android.gms.common.util.DynamiteApi class * {
+  public <fields>;
+  public <methods>;
+}
+
+-dontwarn android.security.NetworkSecurityPolicy
+
+
+
+# Youappi
+-keep class com.google.gson.**{ *;}
+-keep class com.google.android.gms.**{*;}
+-keep class com.youappi.sdk.**{*;}
+-keep interface com.youappi.sdk.**{*;}
+-keep enum com.youappi.sdk.**{*;}
+-keepclassmembers class * {
+   @android.webkit.JavascriptInterface <methods>;
+}
+-keep class com.moat.** { *; }
+-dontwarn com.moat.**
+
+#Ironsource
+-keepclassmembers class com.ironsource.sdk.controller.IronSourceWebView$JSInterface {
+public *;
+}
+-keepclassmembers class * implements android.os.Parcelable {
+public static final android.os.Parcelable$Creator *;
+}
+-keep public class com.google.android.gms.ads.** {
+public *;
+}
+-keep class com.ironsource.adapters.** { *;
+}
+-dontwarn com.moat.**
+-keep class com.moat.** { public protected private *; }
+
+# Bugly
+-dontwarn com.tencent.bugly.tgsdk.**
+-keep class com.tencent.bugly.tgsdk.** { *; }
+# ADX
+-dontwarn com.yomob.tgsdklib.**
+-keep class com.yomob.tgsdklib.** { *; }
+-keep interface com.yomob.tgsdklib.** { *; }
+
+# Chartboost
+-keep class com.chartboost.** { *; }
+
+#Tapjoy
+-keep class com.tapjoy.** { *; }
+-keepattributes JavascriptInterface
+-keepattributes *Annotation*
+-keep class * extends java.util.ListResourceBundle {
+    protected Object[][] getContents();
+}
+-keep public class com.google.android.gms.common.internal.safeparcel.SafeParcelable {
+    public static final *** NULL;
+}
+-keepnames @com.google.android.gms.common.annotation.KeepName class *
+-keepclassmembernames class * {
+    @com.google.android.gms.common.annotation.KeepName *;
+}
+-keepnames class * implements android.os.Parcelable {
+    public static final ** CREATOR;
+}
+-keep class com.google.android.gms.ads.identifier.** { *; }
+-dontwarn com.tapjoy.**
+
+# UnityAds
+-keepattributes SourceFile,LineNumberTable
+-keepattributes JavascriptInterface
+-keep class android.webkit.JavascriptInterface { *; }
+-keep class com.unity3d.ads.** { *; }
+
+
+    # Mintegral
+    -keepattributes Signature
+    -keepattributes *Annotation*  
+    -keep class com.mintegral.** {*; }
+    -keep interface com.mintegral.** {*; }
+    -keep class android.support.v4.** { *; }
+    -dontwarn com.mintegral.**
+    -keep class **.R$* { public static final int mintegral*; }
+    -keep class com.alphab.** {*; }
+    -keep interface com.alphab.** {*; }
+
+# Facebook
+-dontwarn com.facebook.ads.internal.**
+-keeppackagenames com.facebook.*
+
+
+# Applovin
+-dontwarn com.applovin.**
+-keep class com.applovin.** { *; }
+-keep class com.google.android.gms.ads.identifier.** { *; }
+
+    # Vungle
+    -keep class com.vungle.warren.** { *; }
+
+    # Evernote
+    -dontwarn com.evernote.android.job.gcm.**
+    -dontwarn com.evernote.android.job.GcmAvailableHelper
+
+    -dontwarn com.google.android.gms.ads.identifier.**
+
+    -keep public class com.evernote.android.job.v21.PlatformJobService
+    -keep public class com.evernote.android.job.v14.PlatformAlarmService
+    -keep public class com.evernote.android.job.v14.PlatformAlarmReceiver
+    -keep public class com.evernote.android.job.JobBootReceiver
+    -keep public class com.evernote.android.job.JobRescheduleService
+
+    -dontwarn org.codehaus.mojo.animal_sniffer.IgnoreJRERequirement
+    -keep class com.google.android.gms.internal.** { *; }
+
+    # Moat SDK
+    -keep class com.moat.** { *; }
+    -dontwarn com.moat.**
+
+# BatMobi
+-keep class com.etap.** { *; }
+
+#Inmobi
+-keepattributes SourceFile,LineNumberTable
+-keep class com.inmobi.** { *; }
+-dontwarn com.inmobi.**
+-keep public class com.google.android.gms.**
+-dontwarn com.google.android.gms.**
+-dontwarn com.squareup.picasso.**
+-keep class com.google.android.gms.ads.identifier.AdvertisingIdClient{
+     public *;
+}
+-keep class com.google.android.gms.ads.identifier.AdvertisingIdClient$Info{
+     public *;
+}
+# skip the Picasso library classes
+-keep class com.squareup.picasso.** {*;}
+-dontwarn com.squareup.picasso.**
+-dontwarn com.squareup.okhttp.**
+# skip Moat classes
+-keep class com.moat.** {*;}
+-dontwarn com.moat.**
+# skip AVID classes
+-keep class com.integralads.avid.library.* {*;}
+
+# Adcolony
+-dontwarn com.adcolony.**
+-dontwarn android.app.Activity
+-dontwarn com.integralads.avid.library.adcolony.**
+-keep class com.integralads.avid.library.adcolony.** { *; }
+-keep class com.adcolony.** { *; }
+-keepclassmembers class * {
+    @android.webkit.JavascriptInterface <methods>;
+}
+-keepclassmembers class com.adcolony.sdk.ADCNative** {
+    *;
+ }

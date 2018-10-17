@@ -1,0 +1,13 @@
+app/libs/TGSDKADIronsource.1.8.1.aar filter=lfs diff=lfs merge=lfs -text
+app/libs/TGSDKADTapjoy.1.8.1.aar filter=lfs diff=lfs merge=lfs -text
+app/libs/TGSDKADTgadsdk.1.8.1.aar filter=lfs diff=lfs merge=lfs -text
+app/libs/TGSDKADUnityads.1.8.1.aar filter=lfs diff=lfs merge=lfs -text
+app/libs/TGSDKADVungle.1.8.1.aar filter=lfs diff=lfs merge=lfs -text
+app/libs/TGSDKADAdmob.1.8.1.aar filter=lfs diff=lfs merge=lfs -text
+app/libs/TGSDKADApplovin.1.8.1.aar filter=lfs diff=lfs merge=lfs -text
+app/libs/TGSDKADFacebook.1.8.1.aar filter=lfs diff=lfs merge=lfs -text
+app/libs/TGSDKADMobvista.1.8.1.aar filter=lfs diff=lfs merge=lfs -text
+app/libs/TGSDKADYouappi.1.8.1.aar filter=lfs diff=lfs merge=lfs -text
+app/libs/TGSDK.1.8.1.aar filter=lfs diff=lfs merge=lfs -text
+app/libs/TGSDKADAdcolony.1.8.1.aar filter=lfs diff=lfs merge=lfs -text
+app/libs/TGSDKADChartboost.1.8.1.aar filter=lfs diff=lfs merge=lfs -text
