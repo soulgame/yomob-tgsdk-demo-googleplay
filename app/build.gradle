@@ -10,7 +10,7 @@ android {
         applicationId "com.soulgame.tgsdksampleapp.android"
         minSdkVersion 16
         targetSdkVersion 26
-        versionCode 1545965088
+        versionCode 1545980673
         versionName "1.8.3"
         multiDexEnabled true
         ndk {
