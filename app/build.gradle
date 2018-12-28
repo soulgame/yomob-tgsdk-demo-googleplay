@@ -1,5 +1,7 @@
 apply plugin: 'com.android.application'
 
+apply plugin: 'io.fabric'
+
 android {
     compileSdkVersion 26
     buildToolsVersion "25.0.0"
@@ -8,8 +10,8 @@ android {
         applicationId "com.soulgame.tgsdksampleapp.android"
         minSdkVersion 16
         targetSdkVersion 26
-        versionCode 1539677670
-        versionName "1.8.2"
+        versionCode 1545965088
+        versionName "1.8.3"
         multiDexEnabled true
         ndk {
             abiFilters "armeabi-v7a"
@@ -52,6 +54,7 @@ android {
 }
 
 repositories {
+    maven { url 'https://maven.fabric.io/public' }
     flatDir {
         dirs 'libs'
     }
@@ -63,6 +66,9 @@ dependencies {
     compile 'com.android.support:appcompat-v7:25.3.1'
     compile 'com.android.support:support-v4:26.0.1'
     compile 'com.android.support:recyclerview-v7:25.3.1'
+    compile('com.crashlytics.sdk.android:crashlytics:2.9.6@aar') {
+        transitive = true;
+    }
     
     compile 'com.google.android.gms:play-services-ads:15.0.1'
     compile 'com.google.android.gms:play-services-ads-base:15.0.1'
@@ -72,19 +78,18 @@ dependencies {
     compile 'com.google.android.gms:play-services-gass:15.0.1'
 
     
-    compile(name: 'TGSDK.1.8.2', ext: 'aar')
-    compile(name: 'TGSDKADYouappi.1.8.2', ext: 'aar')
-    compile(name: 'TGSDKADIronsource.1.8.2', ext: 'aar')
-    compile(name: 'TGSDKADChartboost.1.8.2', ext: 'aar')
-    compile(name: 'TGSDKADTapjoy.1.8.2', ext: 'aar')
-    compile(name: 'TGSDKADUnityads.1.8.2', ext: 'aar')
-    compile(name: 'TGSDKADMobvista.1.8.2', ext: 'aar')
-    compile(name: 'TGSDKADFacebook.1.8.2', ext: 'aar')
-    compile(name: 'TGSDKADApplovin.1.8.2', ext: 'aar')
-    compile(name: 'TGSDKADVungle.1.8.2', ext: 'aar')
-    compile(name: 'TGSDKADBatmobi.1.8.2', ext: 'aar')
-    compile(name: 'TGSDKADAdmob.1.8.2', ext: 'aar')
-    compile(name: 'TGSDKADInmobi.1.8.2', ext: 'aar')
-    compile(name: 'TGSDKADAdcolony.1.8.2', ext: 'aar')
+    compile(name: 'TGSDK.1.8.3', ext: 'aar')
+    compile(name: 'TGSDKADYouappi.1.8.3', ext: 'aar')
+    compile(name: 'TGSDKADIronsource.1.8.3', ext: 'aar')
+    compile(name: 'TGSDKADChartboost.1.8.3', ext: 'aar')
+    compile(name: 'TGSDKADTapjoy.1.8.3', ext: 'aar')
+    compile(name: 'TGSDKADUnityads.1.8.3', ext: 'aar')
+    compile(name: 'TGSDKADMobvista.1.8.3', ext: 'aar')
+    compile(name: 'TGSDKADFacebook.1.8.3', ext: 'aar')
+    compile(name: 'TGSDKADApplovin.1.8.3', ext: 'aar')
+    compile(name: 'TGSDKADVungle.1.8.3', ext: 'aar')
+    compile(name: 'TGSDKADAdmob.1.8.3', ext: 'aar')
+    compile(name: 'TGSDKADInmobi.1.8.3', ext: 'aar')
+    compile(name: 'TGSDKADAdcolony.1.8.3', ext: 'aar')
 
 }

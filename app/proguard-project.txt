@@ -151,9 +151,6 @@ public *;
     -keep class com.moat.** { *; }
     -dontwarn com.moat.**
 
-# BatMobi
--keep class com.etap.** { *; }
-
 #Inmobi
 -keepattributes SourceFile,LineNumberTable
 -keep class com.inmobi.** { *; }

@@ -29,4 +29,7 @@
     <string name="could_to_get_reward">You could to get reward :-)</string>
     <string name="not_to_get_reward">Oh you could not to get reward :-(</string>
     <string name="close_banner">Close Banner</string>
+    <string name="reward_text">Could Reward</string>
+    <string name="currentsdk">CurrentSDk:\t</string>
+    <string name="currentscene">CurrentScene:\t</string>
 </resources>

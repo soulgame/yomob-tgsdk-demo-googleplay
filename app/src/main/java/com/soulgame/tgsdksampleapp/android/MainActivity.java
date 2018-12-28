@@ -14,6 +14,7 @@ import android.view.WindowManager;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.Spinner;
+import android.widget.TextView;
 
 import com.soulgame.sgsdk.tgsdklib.TGSDK;
 import com.soulgame.sgsdk.tgsdklib.TGSDKServiceResultCallBack;
@@ -26,6 +27,9 @@ import com.soulgame.sgsdk.tgsdklib.ad.TGBannerType;
 import java.util.HashMap;
 import java.util.Map;
 
+import com.crashlytics.android.Crashlytics;
+import io.fabric.sdk.android.Fabric;
+
 public class MainActivity extends Activity {
 
     static private String[] adSceneNames = null;
@@ -36,6 +40,8 @@ public class MainActivity extends Activity {
     private boolean couldReward = false;
     static private final String TAG = "TGSDKSampleApp";
     private Map<String, String> sceneNameMap = null;
+    private String log = "";
+    private TextView tvLog;
 
     private void showResult(final String result) {
         android.util.Log.d(TAG, "[log] : " + result);
@@ -64,22 +70,22 @@ public class MainActivity extends Activity {
 
         @Override
         public void onBannerLoaded(String scene, String result) {
-            showResult("onBannerLoaded("+scene+", " + result + " )");
+//            showResult("onBannerLoaded("+scene+", " + result + " )");
         }
 
         @Override
         public void onBannerFailed(String scene, String result, String error) {
-            showResult("onBannerFailed("+scene+", " + result + ", " + error + " )");
+//            showResult("onBannerFailed("+scene+", " + result + ", " + error + " )");
         }
 
         @Override
         public void onBannerClick(String scene, String result) {
-            showResult("onBannerClick("+scene+", " + result + " )");
+//            showResult("onBannerClick("+scene+", " + result + " )");
         }
 
         @Override
         public void onBannerClose(String scene, String result) {
-            showResult("onBannerClose("+scene+", " + result + " )");
+//            showResult("onBannerClose("+scene+", " + result + " )");
         }
     };
 
@@ -87,13 +93,13 @@ public class MainActivity extends Activity {
 
         @Override
         public void onADAwardFailed(String arg0, String arg1) {
-            android.util.Log.d(TAG, getResources().getString(R.string.reward_fail));
+//            android.util.Log.d(TAG, getResources().getString(R.string.reward_fail));
         }
 
         @Override
         public void onADAwardSuccess(String arg0) {
-            couldReward = true;
-            android.util.Log.d(TAG, getResources().getString(R.string.reward_success));
+//            couldReward = true;
+//            android.util.Log.d(TAG, getResources().getString(R.string.reward_success));
         }
 
     };
@@ -102,22 +108,22 @@ public class MainActivity extends Activity {
 
         @Override
         public void onADClick(String arg0) {
-            showResult(R.string.ad_click);
+//            showResult(R.string.ad_click);
         }
 
         @Override
         public void onADClose(String arg0) {
-            showResult(R.string.ad_close);
-            if (couldReward) {
-                showResult(getString(R.string.could_to_get_reward));
-            } else {
-                showResult(getString(R.string.not_to_get_reward));
-            }
+//            showResult(R.string.ad_close);
+//            if (couldReward) {
+//                showResult(getString(R.string.could_to_get_reward));
+//            } else {
+//                showResult(getString(R.string.not_to_get_reward));
+//            }
         }
 
         @Override
         public void onADComplete(String arg0) {
-            showResult(R.string.ad_completed);
+//            showResult(R.string.ad_completed);
         }
 
         @Override
@@ -128,6 +134,31 @@ public class MainActivity extends Activity {
         @Override
         public void onShowSuccess(String arg0) {
             // showResult(R.string.ad_show_success);
+        }
+
+        @Override
+        public void onShowSuccess(String scene, String result) {
+            log += "onShowSuccess: \n" + scene + "  with sdk: " + result + "\n";
+            tvLog.setText(log);
+
+        }
+
+        @Override
+        public void onShowFailed(String scene, String result, String error) {
+            log += "onShowFailed: \n" + scene + "  with sdk: " + result + "\nerror:  " + error;
+            tvLog.setText(log);
+        }
+
+        @Override
+        public void onADClick(String scene, String result) {
+            log += "onADClick: \n" + scene + "  with sdk: " + result + "\n";
+            tvLog.setText(log);
+        }
+
+        @Override
+        public void onADClose(String scene, String result, boolean couldReward) {
+            log += "onADClose: \n" + scene + "  with sdk: " + result + "\n" + (couldReward ? "可以获得奖励" : "不可以获得奖励");
+            tvLog.setText(log);
         }
 
     };
@@ -160,7 +191,7 @@ public class MainActivity extends Activity {
                 adSceneNames = new String[adScenesLength];
                 for (int i = 0; i < adScenesLength; i++) {
                     sid = adScenes[i];
-                    sName = TGSDK.getSceneNameById(sid) + "("+sid.substring(0, 4)+")";
+                    sName = TGSDK.getSceneNameById(sid) + "(" + sid.substring(0, 4) + ")";
                     adSceneNames[i] = sName;
                     sceneNameMap.put(sName, sid);
                 }
@@ -184,14 +215,30 @@ public class MainActivity extends Activity {
         public void onVideoADLoaded(String arg0) {
             // showResult(R.string.video_ad_loaded);
         }
+
+        @Override
+        public void onAwardVideoLoaded(String result) {
+//            showResult("onAwardVideoLoaded( " + result + " )");
+        }
+
+        @Override
+        public void onInterstitialLoaded(String result) {
+//            showResult("onInterstitialLoaded( " + result + " )");
+        }
+
+        @Override
+        public void onInterstitialVideoLoaded(String result) {
+//            showResult("onInterstitialVideoLoaded( " + result + " )");
+        }
     };
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        Fabric.with(this, new Crashlytics());
         setContentView(R.layout.activity_main);
-
+        tvLog = (TextView) findViewById(R.id.tv_log);
         if (!hasInited) {
             loadingDlg = ProgressDialog.show(
                     this,
@@ -215,7 +262,7 @@ public class MainActivity extends Activity {
                 }
             });
 
-            android.util.Log.d("TGSDK", "getUserGDPRConsentStatus = "+TGSDK.getUserGDPRConsentStatus());
+            android.util.Log.d("TGSDK", "getUserGDPRConsentStatus = " + TGSDK.getUserGDPRConsentStatus());
             TGSDK.setUserGDPRConsentStatus("yes");
             android.util.Log.d("TGSDK", "getIsAgeRestrictedUser = " + TGSDK.getIsAgeRestrictedUser());
             TGSDK.setIsAgeRestrictedUser("no");
@@ -266,6 +313,8 @@ public class MainActivity extends Activity {
 
             @Override
             public void onClick(View arg0) {
+                log = "";
+                tvLog.setText(log);
                 Spinner sceneSpinner = (Spinner) findViewById(R.id.spinnerAdScene);
                 if (null == sceneSpinner.getSelectedItem()) {
                     showResult(R.string.please_choose_scene);
@@ -318,6 +367,8 @@ public class MainActivity extends Activity {
                 final String scenekey = sceneSpinner.getSelectedItem().toString();
                 final String sceneid = sceneNameMap.get(scenekey);
                 couldReward = false;
+                log = "";
+                tvLog.setText(log);
                 TGSDK.showTestView(MainActivity.this, sceneid);
             }
         });
@@ -335,6 +386,7 @@ public class MainActivity extends Activity {
             }
         });
     }
+
 
     @Override
     protected void onStart() {
@@ -378,3 +430,4 @@ public class MainActivity extends Activity {
         TGSDK.onRequestPermissionsResult(this, requestCode, permissions, grantResults);
     }
 }
+
